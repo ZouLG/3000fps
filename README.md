@@ -20,9 +20,9 @@ After you handled the opencv, the facedetector, the liblinear and you get a Path
 
 The detecting results are rather fine. Here is an good example:
 
-![image](https://github.com/ZouLG/3000fps/Good.jpg)
+![image](https://github.com/ZouLG/3000fps/blob/master/Good.jpg)
 
 Here is a Not So Good result:
 
-![image](https://github.com/ZouLG/3000fps/NotSoGood.jpg)
+![image](https://github.com/ZouLG/3000fps/blob/master/NotSoGood.jpg)
 
