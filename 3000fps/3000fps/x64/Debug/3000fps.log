@@ -1,0 +1,75 @@
+﻿生成启动时间为 2016-08-23 16:48:25。
+     1>项目“D:\Documents\GitHub\3000fps\3000fps\3000fps\3000fps.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>ClCompile:
+         E:\Program Files\VS2013\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /openmp /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt Dataset.cpp facedetect.cpp function.cpp main.cpp model.cpp randforest.cpp
+         randforest.cpp
+     1>E:\Program Files\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:\Program Files\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:\Program Files\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>randforest.cpp(39): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
+     1>randforest.cpp(40): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
+     1>randforest.cpp(41): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
+     1>randforest.cpp(42): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
+     1>randforest.cpp(74): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+     1>randforest.cpp(212): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+     1>randforest.cpp(235): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+     1>randforest.cpp(243): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+         model.cpp
+     1>E:\Program Files\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:\Program Files\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:\Program Files\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>model.cpp(16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+     1>model.cpp(17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+     1>model.cpp(29): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+     1>model.cpp(50): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
+     1>model.cpp(51): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
+     1>model.cpp(52): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
+     1>model.cpp(53): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
+     1>model.cpp(155): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+     1>model.cpp(250): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+     1>model.cpp(293): warning C4101: “tmp”: 未引用的局部变量
+         main.cpp
+     1>E:\Program Files\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:\Program Files\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:\Program Files\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         function.cpp
+     1>E:\Program Files\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:\Program Files\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:\Program Files\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>function.cpp(3): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
+     1>function.cpp(7): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>function.cpp(48): warning C4244: “参数”: 从“const double”转换到“float”，可能丢失数据
+     1>function.cpp(63): warning C4244: “参数”: 从“const double”转换到“float”，可能丢失数据
+     1>function.cpp(79): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>function.cpp(164): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+         facedetect.cpp
+     1>E:\Program Files\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:\Program Files\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:\Program Files\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>facedetect.cpp(11): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+         Dataset.cpp
+     1>E:\Program Files\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:\Program Files\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:\Program Files\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>Dataset.cpp(127): warning C4244: “参数”: 从“unsigned __int64”转换到“double”，可能丢失数据
+     1>Dataset.cpp(140): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+         正在生成代码...
+       Link:
+         E:\Program Files\VS2013\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Documents\GitHub\3000fps\3000fps\x64\Debug\3000fps.exe" /INCREMENTAL /NOLOGO opencv_world310.lib lib.lib liblinear.lib libfacedetect.lib "libfacedetect-x64.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Documents\GitHub\3000fps\3000fps\x64\Debug\3000fps.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Documents\GitHub\3000fps\3000fps\x64\Debug\3000fps.lib" /MACHINE:X64 x64\Debug\Dataset.obj
+         x64\Debug\facedetect.obj
+         x64\Debug\function.obj
+         x64\Debug\main.obj
+         x64\Debug\model.obj
+         x64\Debug\randforest.obj
+     1>lib.lib(daxpy.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“lib.lib(daxpy.obj)”或在“D:\Documents\GitHub\3000fps\3000fps\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>lib.lib(ddot.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“lib.lib(ddot.obj)”或在“D:\Documents\GitHub\3000fps\3000fps\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>lib.lib(dnrm2.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“lib.lib(dnrm2.obj)”或在“D:\Documents\GitHub\3000fps\3000fps\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>lib.lib(dscal.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“lib.lib(dscal.obj)”或在“D:\Documents\GitHub\3000fps\3000fps\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>liblinear.lib(linear.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“liblinear.lib(linear.obj)”或在“D:\Documents\GitHub\3000fps\3000fps\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>liblinear.lib(tron.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“liblinear.lib(tron.obj)”或在“D:\Documents\GitHub\3000fps\3000fps\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+         3000fps.vcxproj -> D:\Documents\GitHub\3000fps\3000fps\x64\Debug\3000fps.exe
+     1>已完成生成项目“D:\Documents\GitHub\3000fps\3000fps\3000fps\3000fps.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:04.47
