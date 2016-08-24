@@ -21,5 +21,6 @@ void Draw_shapes(Image &image);
 void Round_shape(const cv::Mat_<uchar> &image, cv::Mat_<double> &S);
 void facedetect(const cv::Mat_<uchar> &image, std::vector<cv::Rect> &bboxs);
 Image Flip_Image(Image &image);
+Image Rotate_Image(Image &image);
 cv::Rect get_outerbox(cv::Mat_<double> &shape);
 #endif

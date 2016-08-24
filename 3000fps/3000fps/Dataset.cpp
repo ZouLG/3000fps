@@ -2,7 +2,7 @@
 #include <fstream>
 
 // 在dataset路径下通过控制台输入dir /b/s/p/w *.jpg>Path_Images.txt保存所有jpg图片的路径
-int Dataset::Load_Dataset(std::string datasetpath, bool flipflag)
+int Dataset::Load_Dataset(std::string datasetpath, bool flipflag ,bool rotateflag)
 {
 	std::cout << "Loading Dataset..." << std::endl;
 	std::ifstream fp1, fp3;
@@ -51,6 +51,15 @@ int Dataset::Load_Dataset(std::string datasetpath, bool flipflag)
 			images.push_back(im_tmp);
 			datasetsize++;
 		}
+		if (rotateflag)
+		{
+			Image im_tmp_rotate = Rotate_Image(im_tmp);
+			if (Get_bbox(im_tmp_rotate))
+			{
+				images.push_back(im_tmp_rotate);
+				datasetsize++;
+			}
+		}
 
 		if (flipflag)
 		{
@@ -60,11 +69,21 @@ int Dataset::Load_Dataset(std::string datasetpath, bool flipflag)
 				images.push_back(im_tmp_flip);
 				datasetsize++;
 			}
+
+			if (rotateflag)
+			{
+				Image im_tmp_rotate = Rotate_Image(im_tmp_flip);
+				if (Get_bbox(im_tmp_rotate))
+				{
+					images.push_back(im_tmp_rotate);
+					datasetsize++;
+				}
+			}
 		}
 		/******************************************/
 	}
 	fp1.close();
-	std::cout << datasetsize << " images totally" << std::endl;
+	std::cout << "Loaded " << datasetsize << " images in total." << std::endl;
 	return 1;
 }
 

@@ -1,4 +1,4 @@
-﻿生成启动时间为 2016-08-23 16:48:25。
+﻿生成启动时间为 2016-08-24 9:45:54。
      1>项目“D:\Documents\GitHub\3000fps\3000fps\3000fps\3000fps.vcxproj”在节点 2 上(Rebuild 个目标)。
      1>ClCompile:
          E:\Program Files\VS2013\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /openmp /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt Dataset.cpp facedetect.cpp function.cpp main.cpp model.cpp randforest.cpp
@@ -26,8 +26,8 @@
      1>model.cpp(52): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
      1>model.cpp(53): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
      1>model.cpp(155): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
-     1>model.cpp(250): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-     1>model.cpp(293): warning C4101: “tmp”: 未引用的局部变量
+     1>model.cpp(251): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+     1>model.cpp(294): warning C4101: “tmp”: 未引用的局部变量
          main.cpp
      1>E:\Program Files\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
      1>E:\Program Files\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
@@ -37,11 +37,13 @@
      1>E:\Program Files\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
      1>E:\Program Files\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
      1>function.cpp(3): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
-     1>function.cpp(7): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
-     1>function.cpp(48): warning C4244: “参数”: 从“const double”转换到“float”，可能丢失数据
-     1>function.cpp(63): warning C4244: “参数”: 从“const double”转换到“float”，可能丢失数据
-     1>function.cpp(79): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
-     1>function.cpp(164): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>function.cpp(8): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>function.cpp(49): warning C4244: “参数”: 从“const double”转换到“float”，可能丢失数据
+     1>function.cpp(64): warning C4244: “参数”: 从“const double”转换到“float”，可能丢失数据
+     1>function.cpp(80): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>function.cpp(148): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>function.cpp(153): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+     1>function.cpp(186): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
          facedetect.cpp
      1>E:\Program Files\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
      1>E:\Program Files\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
@@ -51,8 +53,8 @@
      1>E:\Program Files\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
      1>E:\Program Files\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
      1>E:\Program Files\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-     1>Dataset.cpp(127): warning C4244: “参数”: 从“unsigned __int64”转换到“double”，可能丢失数据
-     1>Dataset.cpp(140): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+     1>Dataset.cpp(146): warning C4244: “参数”: 从“unsigned __int64”转换到“double”，可能丢失数据
+     1>Dataset.cpp(159): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
          正在生成代码...
        Link:
          E:\Program Files\VS2013\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Documents\GitHub\3000fps\3000fps\x64\Debug\3000fps.exe" /INCREMENTAL /NOLOGO opencv_world310.lib lib.lib liblinear.lib libfacedetect.lib "libfacedetect-x64.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Documents\GitHub\3000fps\3000fps\x64\Debug\3000fps.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Documents\GitHub\3000fps\3000fps\x64\Debug\3000fps.lib" /MACHINE:X64 x64\Debug\Dataset.obj

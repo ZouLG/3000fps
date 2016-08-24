@@ -47,7 +47,7 @@ public:
 
 	bool Get_bbox(Image &image);
 
-	int Load_Dataset(std::string datasetpath, bool flipflag = 0);
+	int Load_Dataset(std::string datasetpath, bool flipflag = 0, bool rotateflag = 0);
 
 	void Enlarge_bbox(Image &image);
 

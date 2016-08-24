@@ -170,6 +170,7 @@ void Model::Train(Dataset &dataset)
 	double *l_y = new double[dataset.datasetsize];
 
 	regress.resize(param.stage_num);
+	std::cout << "Start training regressors, " << param.stage_num << " stages in total." << std::endl;
 	for (; current_stage < param.stage_num; current_stage++)
 	{
 		std::cout << std::endl;

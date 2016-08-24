@@ -1,6 +1,7 @@
 #include <opencv2/opencv.hpp>
 #include "Dataset.h"
 #include "model.h";
+#include <ctime>
 
 cv::Point2f get_ith_vector(cv::Mat_<double> &shape, int i)
 {
@@ -137,6 +138,27 @@ Image Flip_Image(Image &image)
 		image_flip.shape(i, 1) = image.shape(FlipArray[i], 1);
 	}
 	return image_flip;
+}
+
+Image Rotate_Image(Image &image)
+{
+	Image image_rotate;
+	cv::RNG rg(time(0));
+	cv::Mat_<double> tmp = image.shape.row(28) - image.shape.row(9);
+	double th1, th = atan(tmp(0, 1) / tmp(0.0)) * 180 / CV_PI - 90;
+	do{
+		th1 = rg.uniform(-12.0, 12.0);
+	} while (th1 - th < 5 && th1 - th > -5);
+
+	cv::Mat_<double> rotate_mat = cv::getRotationMatrix2D(cv::Point2f(image.image_gray.cols / 2, image.image_gray.rows / 2), th1, 1);
+	warpAffine(image.image_gray, image_rotate.image_gray, rotate_mat, image.image_gray.size(), cv::INTER_LINEAR, cv::BORDER_CONSTANT, cv::Scalar());
+
+	tmp(0, 0) = image.image_gray.cols / 2; tmp(0, 1) = image.image_gray.rows / 2;
+	resize(tmp, tmp, cv::Size(2, 68), 0, 0, CV_INTER_NN);
+	cv::Mat_<double> temp;
+	cv::transpose(rotate_mat.colRange(0, 2), temp);
+	image_rotate.shape = (image.shape - tmp) * temp + tmp;
+	return image_rotate;
 }
 
 cv::Rect get_outerbox(cv::Mat_<double> &shape)

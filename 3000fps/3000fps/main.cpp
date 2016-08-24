@@ -6,7 +6,7 @@
 
 void main()
 {
-	bool flag = true;	//true for training ,false for testing
+	bool flag = true;	//true 训练 ,false 测试
 	if (flag){
 		Parameter param;
 		param.landmark_num = 68;
@@ -19,7 +19,7 @@ void main()
 		Dataset data;
 		data.param = param;
 		std::string datasetpath = "D:/Projects_Face_Detection/Datasets/helen/trainset";
-		data.Load_Dataset(datasetpath, true);
+		data.Load_Dataset(datasetpath, true, true);	//用翻转和随机旋转的方式扩展训练集
 		//data.Show_set();
 		data.Get_Meanshape();
 		data.Set_S0();
