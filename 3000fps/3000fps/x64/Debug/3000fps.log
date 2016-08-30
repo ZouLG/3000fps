@@ -1,4 +1,4 @@
-﻿生成启动时间为 2016-08-24 9:45:54。
+﻿生成启动时间为 2016-08-30 10:46:55。
      1>项目“D:\Documents\GitHub\3000fps\3000fps\3000fps\3000fps.vcxproj”在节点 2 上(Rebuild 个目标)。
      1>ClCompile:
          E:\Program Files\VS2013\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /openmp /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt Dataset.cpp facedetect.cpp function.cpp main.cpp model.cpp randforest.cpp
@@ -27,7 +27,9 @@
      1>model.cpp(53): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
      1>model.cpp(155): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
      1>model.cpp(251): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-     1>model.cpp(294): warning C4101: “tmp”: 未引用的局部变量
+     1>model.cpp(316): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>model.cpp(317): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>model.cpp(355): warning C4101: “tmp”: 未引用的局部变量
          main.cpp
      1>E:\Program Files\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
      1>E:\Program Files\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
@@ -74,4 +76,4 @@
 
 生成成功。
 
-已用时间 00:00:04.47
+已用时间 00:00:04.60

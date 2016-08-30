@@ -41,7 +41,7 @@ void main()
 	else{
 		Model m;
 		m.Load_Model();
-		std::ifstream fp;
+		/*std::ifstream fp;
 		fp.open("D:/Projects_Face_Detection/Datasets/helen/testset/Path_Images.txt");
 		for (int i = 0; i < 100; i++)
 		{
@@ -67,31 +67,10 @@ void main()
 		im.image_gray = cv::imread("test.jpg", cv::IMREAD_GRAYSCALE);
 		m.Test(im);
 		Draw_shapes(im.image_gray, im.current_shape);
-		cv::waitKey(0);
+		cv::waitKey(0);*/
 
 		/****************************************************************/
-		/*cv::VideoCapture cap;
-		cap.open(0);
-		if (!cap.isOpened())
-		{
-		std::cerr << "Camera open failed..." << std::endl;
-		exit(0);
-		}
-
-		while (1)
-		{
-		Image mtest = Image();
-		cv::Mat temp;
-		cap.read(temp);
-		//cv::namedWindow("a", cv::WINDOW_AUTOSIZE);
-		//cv::imshow("a", temp);
-		//cv::waitKey(0);
-		cv::cvtColor(temp, mtest.image_gray, CV_RGB2GRAY);
-		//mtest.image_gray = imread("zhang1.jpg", cv::IMREAD_GRAYSCALE);
-		m1.Test(mtest);
-		Draw_shapes(mtest.image_gray, mtest.current_shape);
-		cv::waitKey(1);
-		}*/
+		m.TestCamera();
 
 	}
 

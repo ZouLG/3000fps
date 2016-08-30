@@ -282,6 +282,67 @@ void Model::Test(Image &image)
 	//std::cout << t2 - t1 << std::endl;
 }
 
+void Model::TestCamera()
+{
+	double scale = 2;
+	cv::VideoCapture cap;
+	cap.open(0);
+	if (!cap.isOpened())
+	{
+		std::cerr << "Camera open failed..." << std::endl;
+		return;
+	}
+
+	Image im = Image();
+	cv::Mat temp;
+	cv::Mat_<double> meanshape_ = meanshape.clone();
+
+	feature_node* x = new feature_node[param.landmark_num * param.tree_num + 1];
+	while (1)
+	{
+		std::vector<cv::Rect> bboxs;
+		cap.read(temp);
+		cv::cvtColor(temp, im.image_gray, CV_RGB2GRAY);
+		cv::resize(im.image_gray, temp, cv::Size(), 1 / scale, 1 / scale, CV_INTER_LINEAR);
+		facedetect(temp, bboxs);
+		if (bboxs.empty())
+		{
+			cv::namedWindow("window 1", cv::WINDOW_AUTOSIZE);
+			cv::imshow("window 1", im.image_gray);
+			if (27 == cv::waitKey(15))
+				return;
+			continue;
+		}
+		im.bbox.x = bboxs[0].x * scale; im.bbox.y = bboxs[0].y * scale;
+		im.bbox.width = bboxs[0].width * scale; im.bbox.height = bboxs[0].height * scale;
+
+		im.current_shape = Center_and_scale(meanshape_, im.bbox);
+		im.affine_mat = Get_Affine_Mat(meanshape, im.current_shape);
+		for (current_stage = 0; current_stage < param.stage_num; current_stage++)
+		{
+			regress[current_stage].Get_LBF(im, x);
+
+			cv::Mat_<double> dS_tmp(param.landmark_num, 2);
+#pragma omp parallel for
+			for (int l_i = 0; l_i < param.landmark_num; l_i++)
+			{
+				dS_tmp(l_i, 0) = predict(regress[current_stage].Model_x[l_i], x);
+				dS_tmp(l_i, 1) = predict(regress[current_stage].Model_y[l_i], x);
+			}
+
+			cv::Mat_<double> shape_ = dS_tmp + Center_and_scale(im.bbox, im.current_shape);
+			im.current_shape = Center_and_scale(shape_, im.bbox);
+			Round_shape(im.image_gray, im.current_shape);
+			im.affine_mat = Get_Affine_Mat(meanshape, im.current_shape);
+		}
+		Draw_shapes(im.image_gray, im.current_shape, im.bbox);
+		//meanshape_ = Center_and_scale(im.bbox, im.current_shape);
+		cv::waitKey(1);
+	}
+	delete[]x;
+	cv::destroyAllWindows();
+}
+
 
 void Model::Save_Model(const std::string Model_Path)
 {

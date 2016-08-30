@@ -81,6 +81,7 @@ public:
 
 	void Train(Dataset &dataset);
 	void Test(Image &image);
+	void TestCamera();
 
 	void Save_Model(const std::string Model_Path = ".");
 	void Load_Model(const std::string Model_path = "./Model");
