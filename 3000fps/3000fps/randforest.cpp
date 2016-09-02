@@ -16,7 +16,7 @@ treenode::treenode()
 cv::Mat_<int> randforest::generate_pixel_diff(Dataset &dataset, std::vector<Pair> &pixel_pair)
 {
 	cv::Mat_<int> pixel_diff(dataset.datasetsize, param.feat_num);
-	//#pragma omp parallel for
+#pragma omp parallel for
 	for (int i = 0; i < dataset.datasetsize; i++)
 	{
 		cv::Mat_<double> A = Get_Affine_Mat(dataset.meanshape, dataset.images[i].current_shape);
@@ -42,9 +42,8 @@ cv::Mat_<int> randforest::generate_pixel_diff(Dataset &dataset, std::vector<Pair
 			temp2.y = std::max(0, std::min((int)temp2.y, dataset.images[i].image_gray.rows - 1));
 
 			int t1 = (int)(dataset.images[i].image_gray(temp1));
-			int t2 = (int)(dataset.images[i].image_gray(temp2)); 
+			int t2 = (int)(dataset.images[i].image_gray(temp2));
 			pixel_diff(i, j) = t1 - t2;
-
 			//cv::Mat_<uchar> itmp = dataset.images[i].image_gray;
 			//cv::circle(itmp, current_pos, 2, 120);
 			//cv::circle(itmp, current_pos, param.radius[0] * dataset.images[i].bbox.width, 120);
@@ -54,10 +53,10 @@ cv::Mat_<int> randforest::generate_pixel_diff(Dataset &dataset, std::vector<Pair
 			//cv::waitKey(0);
 		}
 	}
-	//std::ofstream fp;
-	//fp.open("pd1.txt");
-	//fp << pixel_diff;
-	//fp.close();
+	/*std::ofstream fp;
+	fp.open("pd1.txt");
+	fp << pixel_diff;
+	fp.close();*/
 	return pixel_diff;
 }
 
@@ -71,21 +70,23 @@ void randforest::Trainforest(Dataset &dataset, std::vector<Pixel_Pair> &pixel_pa
 	//fp << pixel_diff;
 	//fp.close();
 	//std::cout << "ready" << std::endl;
-	srand(time(NULL));
+	srand(time(0));
+	roots.resize(param.tree_num);
+	//#pragma omp parallel for
 	for (int num = 0; num < param.tree_num; num++)
 	{
 		std::vector<int> index_data, index_attr;
 		index_data = Rand(dataset.datasetsize, dataset.datasetsize, true);
-		index_attr = Rand(param.feat_num, (int)(param.feat_num/5), false);
+		index_attr = Rand(param.feat_num, (int)(param.feat_num / 3), false);
 
 		int currentdepth = 0, leafnum = 0;
-		roots.push_back(Train_SingleTree(dataset, pixel_diff, index_data, index_attr, currentdepth, leafnum));
-		//std::cout << leafnum << std::endl;
+		roots[num] = Train_SingleTree(dataset, pixel_diff, index_data, index_attr, currentdepth, leafnum);
 	}
+	//BFS_Save_Trees("rf1.txt");
 }
 
 treenode* randforest::Train_SingleTree(Dataset &dataset, cv::Mat_<int> &pixel_diff, std::vector<int> &index_data,
-									   std::vector<int> &index_attr, int currentdepth, int &leafnum)
+	std::vector<int> &index_attr, int currentdepth, int &leafnum)
 {
 	if (currentdepth < param.tree_max_depth)
 	{
@@ -114,7 +115,7 @@ treenode* randforest::Train_SingleTree(Dataset &dataset, cv::Mat_<int> &pixel_di
 }
 
 void randforest::find_split_attr(Dataset &dataset, cv::Mat_<int> &pixel_diff, std::vector<int> &index_data, std::vector<int> &index_attr, int &split_attr,
-								 int &thres, std::vector<int> &left_data_index, std::vector<int> &right_data_index)
+	int &thres, std::vector<int> &left_data_index, std::vector<int> &right_data_index)
 {
 	//cv::RNG rd(time(0));
 	std::vector<int> left_index, right_index;

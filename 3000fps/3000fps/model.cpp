@@ -24,14 +24,64 @@ void Regressor::generate_pixel_pairs()
 	}
 }
 
+// 没用openmp
+//void Regressor::Get_LBF(Image &image, feature_node *x)
+//{
+//	int index = 1, dim = pow(2, param.tree_max_depth - 1);
+//	int k = 0;
+//	for (int i = 0; i < param.landmark_num; i++)
+//	{
+//		for (int j = 0; j < param.tree_num; j++)
+//		{
+//			treenode *p = rf[i].roots[j];
+//			while (!(p->isleaf))
+//			{
+//				cv::Point2f pixel1 = pixel_pair[i][p->attr_index].pixel1;
+//				cv::Point2f pixel2 = pixel_pair[i][p->attr_index].pixel2;
+//
+//				cv::Mat_<double> tmp = image.affine_mat * cv::Mat_<double>(pixel1);
+//				pixel1 = cv::Point2f(tmp);
+//				tmp = image.affine_mat * cv::Mat_<double>(pixel2);
+//				pixel2 = cv::Point2f(tmp);
+//
+//				cv::Point2f current_pos = get_ith_vector(image.current_shape, i);
+//				pixel1 += current_pos;
+//				pixel2 += current_pos;
+//
+//				pixel1.x = std::max(0, std::min((int)pixel1.x, image.image_gray.cols - 1));
+//				pixel1.y = std::max(0, std::min((int)pixel1.y, image.image_gray.rows - 1));
+//				pixel2.x = std::max(0, std::min((int)pixel2.x, image.image_gray.cols - 1));
+//				pixel2.y = std::max(0, std::min((int)pixel2.y, image.image_gray.rows - 1));
+//
+//				int t1 = (int)(image.image_gray(pixel1));
+//				int t2 = (int)(image.image_gray(pixel2));
+//				int p_d = t1 - t2;
+//
+//				if (p_d <= p->threshold)
+//					p = p->lchild;
+//				else
+//					p = p->rchild;
+//			}
+//			x[k].index = index + p->leafnum;
+//			x[k].value = 1.0;
+//			k++;
+//			index += dim;
+//		}
+//	}
+//	x[k].index = -1;
+//	x[k].value = -1.0;
+//}
+
+// 使用openmp
 void Regressor::Get_LBF(Image &image, feature_node *x)
 {
-	int index = 1, dim = pow(2, param.tree_max_depth - 1);
-	int k = 0;
+	int dim = pow(2, param.tree_max_depth - 1);
 	for (int i = 0; i < param.landmark_num; i++)
 	{
+		//#pragma omp parallel for
 		for (int j = 0; j < param.tree_num; j++)
 		{
+			int k = param.tree_num * i + j;
 			treenode *p = rf[i].roots[j];
 			while (!(p->isleaf))
 			{
@@ -61,14 +111,12 @@ void Regressor::Get_LBF(Image &image, feature_node *x)
 				else
 					p = p->rchild;
 			}
-			x[k].index = index + p->leafnum;
+			x[k].index = k * dim + 1 + p->leafnum;
 			x[k].value = 1.0;
-			k++;
-			index += dim;
 		}
 	}
-	x[k].index = -1;
-	x[k].value = -1.0;
+	x[param.tree_num * param.landmark_num - 1].index = -1;
+	x[param.tree_num * param.landmark_num - 1].value = -1.0;
 }
 
 void Regressor::Save_Regressor(const std::string DirectoryPath)
@@ -78,7 +126,7 @@ void Regressor::Save_Regressor(const std::string DirectoryPath)
 	_itoa(stage, tmp, 10);
 	std::string temp = tmp;
 	Regress_Path += temp;
-	if (_access(Regress_Path.c_str(),0) == -1)			//创建目录
+	if (_access(Regress_Path.c_str(), 0) == -1)			//创建目录
 		_mkdir(Regress_Path.c_str());
 
 	std::string file_path = Regress_Path + "/Feature_Location.txt";
@@ -89,11 +137,11 @@ void Regressor::Save_Regressor(const std::string DirectoryPath)
 	{
 		for (int i = 0; i < param.landmark_num; i++)
 			fp << pixel_pair[i][j].pixel1.x << ' ' << pixel_pair[i][j].pixel1.y << ' '
-				<< pixel_pair[i][j].pixel2.x << ' ' << pixel_pair[i][j].pixel2.y << ' ';
+			<< pixel_pair[i][j].pixel2.x << ' ' << pixel_pair[i][j].pixel2.y << ' ';
 		fp << std::endl;
 	}
 	fp.close();
-	
+
 	for (int i = 0; i < param.landmark_num; i++)
 	{
 		_itoa(i, tmp, 10);
@@ -170,7 +218,6 @@ void Model::Train(Dataset &dataset)
 	double *l_y = new double[dataset.datasetsize];
 
 	regress.resize(param.stage_num);
-	std::cout << "Start training regressors, " << param.stage_num << " stages in total." << std::endl;
 	for (; current_stage < param.stage_num; current_stage++)
 	{
 		std::cout << std::endl;
@@ -248,19 +295,23 @@ void Model::Test(Image &image)
 	std::vector<cv::Rect> bboxs;
 	//clock_t t1 = clock();
 	facedetect(image.image_gray, bboxs);
+	//clock_t t2 = clock();
+	//std::cout << "detect faces cost:" << ((double)(t2 - t1)) / 1000 << "s" << "		";
 	int dim = pow(2, param.tree_max_depth - 1);
 	for (int i = 0; i < bboxs.size(); i++)
 	{
+		//t1 = t2; 
 		image.bbox = bboxs[i];
 		image.current_shape = Center_and_scale(meanshape, image.bbox);
 		image.affine_mat = Get_Affine_Mat(meanshape, image.current_shape);
-		//std::cout << image.affine_mat << std::endl;
+
 		feature_node* x = new feature_node[param.landmark_num * param.tree_num + 1];
 		for (current_stage = 0; current_stage < param.stage_num; current_stage++)
 		{
 			regress[current_stage].Get_LBF(image, x);
 
 			cv::Mat_<double> dS_tmp(param.landmark_num, 2);
+#pragma omp parallel for
 			for (int l_i = 0; l_i < param.landmark_num; l_i++)
 			{
 				dS_tmp(l_i, 0) = predict(regress[current_stage].Model_x[l_i], x);
@@ -274,12 +325,11 @@ void Model::Test(Image &image)
 			//Draw_shapes(image.image_gray, image.current_shape);
 			//cv::waitKey(0);
 		}
-		Draw_shapes(image.image_gray, image.current_shape);
-		cv::waitKey(0);
+		//t2 = clock();
+		//std::cout << "detect landmarks cost:" << ((double)(t2 - t1)) / 1000 << "s" << std::endl;
 		delete[]x;
 	}
-	//clock_t t2 = clock();
-	//std::cout << t2 - t1 << std::endl;
+
 }
 
 void Model::TestCamera()
@@ -343,7 +393,6 @@ void Model::TestCamera()
 	cv::destroyAllWindows();
 }
 
-
 void Model::Save_Model(const std::string Model_Path)
 {
 	std::cout << "Start saving model..." << std::endl;
@@ -371,7 +420,6 @@ void Model::Save_Model(const std::string Model_Path)
 	{
 		regress[i].Save_Regressor(model_path);
 	}
-
 }
 
 void Model::Load_Model(const std::string Model_path)
@@ -405,6 +453,5 @@ void Model::Load_Model(const std::string Model_path)
 		regress[i].stage = i;
 		regress[i].Load_Regressor(RegressorDirectory);
 	}
-	
 	std::cout << "loading completed." << std::endl;
 }

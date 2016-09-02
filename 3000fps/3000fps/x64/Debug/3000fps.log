@@ -1,5 +1,6 @@
-﻿生成启动时间为 2016-08-30 10:46:55。
+﻿生成启动时间为 2016-09-02 10:48:55。
      1>项目“D:\Documents\GitHub\3000fps\3000fps\3000fps\3000fps.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppClean.targets(76,5): warning : 文件“d:\documents\github\3000fps\3000fps\3000fps\x64\debug\model.obj”正由另一进程使用，因此该进程无法访问此文件。
      1>ClCompile:
          E:\Program Files\VS2013\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /openmp /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt Dataset.cpp facedetect.cpp function.cpp main.cpp model.cpp randforest.cpp
          randforest.cpp
@@ -10,26 +11,26 @@
      1>randforest.cpp(40): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
      1>randforest.cpp(41): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
      1>randforest.cpp(42): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
-     1>randforest.cpp(74): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
-     1>randforest.cpp(212): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-     1>randforest.cpp(235): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-     1>randforest.cpp(243): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+     1>randforest.cpp(73): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+     1>randforest.cpp(213): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+     1>randforest.cpp(236): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+     1>randforest.cpp(244): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
          model.cpp
      1>E:\Program Files\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
      1>E:\Program Files\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
      1>E:\Program Files\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
      1>model.cpp(16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
      1>model.cpp(17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-     1>model.cpp(29): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-     1>model.cpp(50): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
-     1>model.cpp(51): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
-     1>model.cpp(52): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
-     1>model.cpp(53): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
-     1>model.cpp(155): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
-     1>model.cpp(251): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-     1>model.cpp(316): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-     1>model.cpp(317): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-     1>model.cpp(355): warning C4101: “tmp”: 未引用的局部变量
+     1>model.cpp(78): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+     1>model.cpp(100): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
+     1>model.cpp(101): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
+     1>model.cpp(102): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
+     1>model.cpp(103): warning C4244: “=”: 从“const int”转换到“float”，可能丢失数据
+     1>model.cpp(203): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+     1>model.cpp(300): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+     1>model.cpp(366): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>model.cpp(367): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>model.cpp(404): warning C4101: “tmp”: 未引用的局部变量
          main.cpp
      1>E:\Program Files\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
      1>E:\Program Files\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
@@ -76,4 +77,4 @@
 
 生成成功。
 
-已用时间 00:00:04.60
+已用时间 00:00:04.39
